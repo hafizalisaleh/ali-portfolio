@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 40%;
+    --accent: 173 80% 36%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 243 75% 59%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 40% 6%;
+    --foreground: 210 40% 98%;
+    --card: 224 32% 10%;
+    --card-foreground: 210 40% 98%;
+    --primary: 239 84% 72%;
+    --primary-foreground: 224 40% 8%;
+    --secondary: 223 25% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 25% 16%;
+    --muted-foreground: 218 15% 68%;
+    --accent: 172 66% 50%;
+    --accent-foreground: 224 40% 8%;
+    --border: 223 22% 20%;
+    --input: 223 22% 20%;
+    --ring: 239 84% 72%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  .section-kicker {
+    @apply font-mono text-sm text-primary mb-2;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:opacity-90 hover:-translate-y-0.5 shadow-lg shadow-primary/25;
+  }
+  .btn-outline {
+    @apply btn border border-border bg-card hover:bg-secondary hover:-translate-y-0.5;
+  }
+}
+
+/* Scroll-reveal: elements start hidden and fade up when visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; }
+}
